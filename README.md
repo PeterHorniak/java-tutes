@@ -1,2 +1,2 @@
 # java-tutes
-Learning Java
+This repo stores my progress at learning Java.
