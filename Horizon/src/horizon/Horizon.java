@@ -21,35 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package horizon;
 
 import java.util.Scanner;
 
 /*
-To do:  How long it takes to land from this elevation w/wo a parachute
-        How long it takes light to travel the distance
-        How thin the air is at this elevation, how much more effort to breathe
-        What physiological effects you feel that are unusual to ground level
-*/
-
+ To do:  Allow user to choose the units of measurement
+ Gracefully deal with invalid user input 
+ How long it takes to land from this elevation w/wo a parachute
+ How long it takes light to travel the distance
+ How thin the air is at this elevation, how much more effort to breathe
+ What physiological effects you feel that are unusual to ground level
+ */
 public class Horizon {
 
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
-        
+
         double userElevation;
         double userHorizonDistance;
+        String usUserDecision;
 
-        
-        System.out.print("Your elevation (m): ");
-        userElevation = Double.parseDouble(reader.nextLine());
-        
-        userHorizonDistance = Math.sqrt(2 * 6371000 * userElevation + userElevation * userElevation);
-        
-        System.out.println("You can see up to " + userHorizonDistance/1000 + " kilometers away.");
-        System.out.println("Assuming clear weather, perfect eyesight, no gravitational effects, and other variables that I can't be bothered to simulate.");
-               
+        while (true) {
+            System.out.print("Your elevation (m): ");
+            userElevation = Double.parseDouble(reader.nextLine());
+            userHorizonDistance = Math.sqrt(2 * 6371000 * userElevation + userElevation * userElevation);
+
+            System.out.println("You can see up to " + userHorizonDistance / 1000 + " kilometers away.");
+            System.out.println("Assuming clear weather, perfect eyesight, no gravitational effects, and other variables that I can't be bothered to simulate.");
+            System.out.println("To escape, type 'quit'.");
+            System.out.println("To ask again, type any other character!");
+            usUserDecision = reader.nextLine();
+
+            if (usUserDecision.equals("quit")
+                    || usUserDecision.equals("Quit")
+                    || usUserDecision.equals("quit.")
+                    || usUserDecision.equals("Quit.")) {
+                System.out.println("Bye bye");
+                break;
+            }
+        }
     }
-    
 }
