@@ -27,6 +27,7 @@ import java.util.Scanner;
 
 /*
  To do:  Allow user to choose the units of measurement
+ Put the Quit functionality into a separate function
  Gracefully deal with invalid user input 
  How long it takes to land from this elevation w/wo a parachute
  How long it takes light to travel the distance
@@ -38,20 +39,24 @@ public class Horizon {
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
 
-        double userElevation;
-        double userHorizonDistance;
-        String usUserDecision;
-
         while (true) {
             System.out.print("Your elevation (m): ");
-            userElevation = Double.parseDouble(reader.nextLine());
-            userHorizonDistance = Math.sqrt(2 * 6371000 * userElevation + userElevation * userElevation);
+            double userElevation = Double.parseDouble(reader.nextLine());
+            double userHorizonDistance = Math.sqrt(2 * 6371000 * userElevation + userElevation * userElevation);
 
             System.out.println("You can see up to " + userHorizonDistance / 1000 + " kilometers away.");
             System.out.println("Assuming clear weather, perfect eyesight, no gravitational effects, and other variables that I can't be bothered to simulate.");
+            
+            if (userElevation > 1000) {
+                System.out.println("I hope you are in an aircraft, otherwise it must be cold.");
+                System.out.println("Want me to know how much colder compared to ground level? Give me your current temperature.");
+                double userTemp = Double.parseDouble(reader.nextLine());
+                System.out.println("The ground is " + (userTemp + (3.5 * (userElevation / 1000))) + "°C.");
+            }
+            
             System.out.println("To escape, type 'quit'.");
             System.out.println("To ask again, type any other character!");
-            usUserDecision = reader.nextLine();
+            String usUserDecision = reader.nextLine();
 
             if (usUserDecision.equals("quit")
                     || usUserDecision.equals("Quit")
