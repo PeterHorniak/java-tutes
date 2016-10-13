@@ -44,7 +44,7 @@ public class Horizon {
             double userElevation = Double.parseDouble(reader.nextLine());
             double userHorizonDistance = Math.sqrt(2 * 6371000 * userElevation + userElevation * userElevation);
 
-            System.out.println("You can see up to " + userHorizonDistance / 1000 + " kilometers away.");
+            System.out.println("You can see up to " + (Math.round(userHorizonDistance)/1000.0) + " kilometers away.");
             System.out.println("Assuming clear weather, perfect eyesight, no gravitational effects, and other variables that I can't be bothered to simulate.");
             
             if (userElevation > 1000) {
@@ -62,7 +62,7 @@ public class Horizon {
                     || usUserDecision.equals("Quit")
                     || usUserDecision.equals("quit.")
                     || usUserDecision.equals("Quit.")) {
-                System.out.println("Bye bye");
+                System.out.println("Bye bye!");
                 break;
             }
         }
